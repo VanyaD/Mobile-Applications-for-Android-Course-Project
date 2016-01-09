@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/myBlack">
+<TextView
+    android:id="@+id/camera_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Capture the Problem"
+    android:textSize="25dp"
+    android:textColor="@color/mainAppColor"
+    android:layout_gravity="center_horizontal"
+    />
+
+    <Button
+        android:id="@+id/button_camera"
+        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:text="Shoot"
+        android:background="@drawable/apptheme_btn_default_holo_dark"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:layout_below="@+id/camera_text"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Next"
+        android:onClick="GoToDetailsPage"
+        android:layout_below="@id/button_camera"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
