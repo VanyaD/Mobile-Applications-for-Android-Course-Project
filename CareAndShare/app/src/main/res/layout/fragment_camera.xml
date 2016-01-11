@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/myBlack">
@@ -10,13 +10,13 @@
     android:text="Capture the Problem"
     android:textSize="25dp"
     android:textColor="@color/mainAppColor"
-    android:layout_gravity="center_horizontal"
+    android:layout_centerHorizontal="true"
     />
 
     <Button
         android:id="@+id/button_camera"
         android:layout_height="wrap_content"
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:text="Shoot"
         android:background="@drawable/apptheme_btn_default_holo_dark"
         android:textAllCaps="false"
@@ -28,13 +28,27 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/button_goNext"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="Go Next"
+        android:background="@drawable/green_apptheme_btn_default_holo_dark"
         android:onClick="GoToDetailsPage"
-        android:layout_below="@id/button_camera"
+        android:text="Next"
+        android:layout_marginTop="10dp"
+        android:textSize="27sp"
+        android:layout_below="@+id/button_camera"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:drawableRight="@drawable/go_next"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView_photoTaken"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/button_goNext"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        />
+
+</RelativeLayout>
