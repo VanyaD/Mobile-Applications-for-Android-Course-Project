@@ -1,9 +1,15 @@
 package com.example.android.careandshare;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,6 +24,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -25,18 +39,22 @@ import com.parse.ParseObject;
 
 import java.io.ByteArrayOutputStream;
 
-public class SubmitionActivity extends AppCompatActivity {
+public class SubmitionActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ViewPager viewPager;
     private Button btnTakePhoto;
     private ImageView imgTakenPhoto;
     private static final int CAM_REQUEST = 1313;
     private ParseObject myParseObject;
     private Bitmap myPhoto;
+    private GoogleMap mMap;
+    private MapView mMapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submition);
+
+        mMapView = (MapView) findViewById(R.id.mapView);
 
         myParseObject = new ParseObject("CareAndShare_Problem");
 
@@ -45,20 +63,33 @@ public class SubmitionActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    public class btnTakePhotoClicker implements Button.OnClickListener
-    {
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+/*
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(100, 100);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }*/
+
+    public class btnTakePhotoClicker implements Button.OnClickListener {
         @Override
         public void onClick(View v) {
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(cameraIntent, CAM_REQUEST);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CAM_REQUEST)
-        {
+        if (requestCode == CAM_REQUEST) {
             myPhoto = (Bitmap) data.getExtras().get("data");
 
             imgTakenPhoto.setImageBitmap(myPhoto);
@@ -95,6 +126,7 @@ public class SubmitionActivity extends AppCompatActivity {
         }
         */
     }
+
     private class NavigationPagerAdapter extends FragmentPagerAdapter {
         public NavigationPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -109,18 +141,61 @@ public class SubmitionActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             Fragment fragment = null;
             switch (position) {
-                case 0: fragment = new SubmitionActivityFragment(); break;
-                case 1: fragment = new CameraFragment(); break;
-                case 2: fragment = new DetailsFragment(); break;
+                case 0:
+                    fragment = new SubmitionActivityFragment();
+                    break;
+                case 1:
+                    fragment = new CameraFragment();
+                    break;
+                case 2:
+                    fragment = new DetailsFragment();
+                    break;
             }
             return fragment;
         }
     }
 
-    private String generateUniqueImageName(){
+    private String generateUniqueImageName() {
         Date d = new Date();
         DateFormat df = new SimpleDateFormat("MMddyyyyHHmmssSSS");
         String imageName = df.format(d);
         return imageName + ".png";
     }
+/*
+    private void setUpMap() {
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker").snippet("Snippet"));
+
+        // Enable MyLocation Layer of Google Map
+        //  mMap.setMyLocationEnabled(true);
+
+        // Get LocationManager object from System Service LOCATION_SERVICE
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // Create a criteria object to retrieve provider
+        Criteria criteria = new Criteria();
+
+        // Get the name of the best provider
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        Location myLocation = locationManager.getLastKnownLocation(provider);
+
+        // set map type
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        // Get latitude of the current location
+      //  double latitude = myLocation.getLatitude();
+
+        // Get longitude of the current location
+      //  double longitude = myLocation.getLongitude();
+
+        // Create a LatLng object for the current location
+        LatLng latLng = new LatLng(latitude, longitude);
+
+        // Show the current location in Google Map
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        // Zoom in the Google Map
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("You are here!").snippet("Consider yourself located"));
+    }*/
 }
