@@ -1,58 +1,41 @@
 package com.example.android.careandshare;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Criteria;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 
-import org.w3c.dom.Text;
+import models.MapObject;
 
-import java.io.ByteArrayOutputStream;
-
-public class SubmitionActivity extends AppCompatActivity/* implements OnMapReadyCallback*/ {
+public class SubmitionActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks{
     private ViewPager viewPager;
     private Button btnTakePhoto;
     private ImageView imgTakenPhoto;
@@ -60,17 +43,16 @@ public class SubmitionActivity extends AppCompatActivity/* implements OnMapReady
     private ParseObject myParseObject;
     private Bitmap myPhoto;
     private Button getMyLocation;
-    private GoogleMap mMap;
+    public MapObject mmmap;
     private MapView mMapView;
-    private LocationManager locationManager;
-
+    Location myLocation;
+    GoogleApiClient mGoogleApiClient;
+    List<Address> addresses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submition);
-
-//        mMapView = (MapView) findViewById(R.id.mapView);
-
+        mmmap = new MapObject();
         myParseObject = new ParseObject("CareAndShare_Problem");
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -78,34 +60,60 @@ public class SubmitionActivity extends AppCompatActivity/* implements OnMapReady
         viewPager.setAdapter(adapter);
 
         mMapView = (MapView) findViewById(R.id.mapView);
-      //  mMapView.getMapAsync(this);
 
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
         //locationManager = (LocationManager)
         //        getSystemService(Context.LOCATION_SERVICE);
 
-
     }
 
-  /*  @Override
-   public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-    }*/
-/*
     public void findMyLocation(View view) {
-        Criteria criteria = new Criteria();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] {
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION },
-                    10);
-        }
+     /*   if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        } else {
+            // Show rationale and request permission.
+        }*/
+    }
 
-        Location location = locationManager.getLastKnownLocation(locationManager
-                .getBestProvider(criteria, false));
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
-        Toast.makeText(this, (int)latitude, Toast.LENGTH_SHORT).show();
-    }*/
+    public MapObject getMyData() {
+        return mmmap;
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        myLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+        double lat = myLocation.getLatitude();
+        double lon = myLocation.getLongitude();
+        try {
+            addresses = geocoder.getFromLocation(lat, lon, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+/*
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String zip = addresses.get(0).getPostalCode();
+        String country = addresses.get(0).getCountryName();*/
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+    }
 
     public class btnTakePhotoClicker implements Button.OnClickListener {
         @Override
@@ -246,4 +254,13 @@ public class SubmitionActivity extends AppCompatActivity/* implements OnMapReady
                 .build();                   // Creates a CameraPosition from the builder
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }*/
+    protected void onStart() {
+    mGoogleApiClient.connect();
+    super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
 }
