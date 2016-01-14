@@ -39,13 +39,25 @@
         android:layout_height="wrap_content"
         android:layout_width="300dp"
         android:text="About CareAndShare"
-        android:onClick="MyButtonClick"
+        android:onClick="bt_aboutCareAndShare"
         android:drawableLeft="@drawable/about_app"
         android:background="@drawable/apptheme_btn_default_holo_dark"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:textSize="25dp"
+
+        />
+
+        <TextView
+        android:id="@+id/tv_aboutCareAndShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is the easiest and most convenient way to share a problem or even just an idea for improvement and be sure that it will be transferred to the respective authorities. This application is for everyone who cannot just pass by issues faced while traveling to work. This application is for everyone who cares for the others, cares for his children, cares for the future. If you are a person of action, then this application is the one for you!"
+        android:textColor="@color/mainAppColor"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+            android:visibility="invisible"
         />
 
 </LinearLayout>

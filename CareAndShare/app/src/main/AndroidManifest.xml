@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.careandshare">
+
     <!-- This is permission for Parse.com-->
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATEINTERNET"/>
@@ -19,7 +20,8 @@
         <permission
             android:name="com.example.permission.MAPS_RECEIVE"
             android:protectionLevel="signature"/>
-        <uses-permission android:name="com.example.permission.MAPS_RECEIVE"/>
+
+    <uses-permission android:name="com.example.permission.MAPS_RECEIVE"/>
     <!-- -->
 
         <application
