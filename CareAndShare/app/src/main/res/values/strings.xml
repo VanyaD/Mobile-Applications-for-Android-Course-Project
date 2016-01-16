@@ -2,11 +2,11 @@
     <string name="app_name">CareAndShare</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_submition">SubmitionActivity</string>
-        <string-array id="category_array"
-            name="category_array">
-            <item>Health</item>
-            <item>Infrastructure</item>
-            <item>Nature</item>
-            <item>Other</item>
-        </string-array>
+    <string-array name="category_array" id="category_array">
+        <item>Health</item>
+        <item>Infrastructure</item>
+        <item>Nature</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_list">ListActivity</string>
 </resources>

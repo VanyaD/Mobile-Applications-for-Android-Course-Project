@@ -25,10 +25,11 @@
         android:layout_below="@+id/camera_text"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
+
         />
 
     <Button
-        android:id="@+id/button_goNext"
+        android:id="@+id/bt_goToDetailsPage"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:background="@drawable/green_apptheme_btn_default_holo_dark"
@@ -36,17 +37,19 @@
         android:text="Next"
         android:layout_marginTop="10dp"
         android:textSize="27sp"
-        android:layout_below="@+id/button_camera"
+        android:layout_below="@id/button_camera"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:drawableRight="@drawable/go_next"/>
+        android:drawableRight="@drawable/go_next"
+        android:visibility="invisible"
+        />
 
     <ImageView
         android:id="@+id/imageView_photoTaken"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/button_goNext"
+        android:layout_below="@+id/bt_goToDetailsPage"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         />

@@ -22,10 +22,11 @@
         />
 
     <Button
+        android:id="@+id/bt_listProblems"
         android:layout_height="wrap_content"
         android:layout_width="300dp"
         android:text="List problems"
-        android:onClick="MyButtonClick"
+        android:onClick="goToListActivity"
         android:drawableLeft="@drawable/list_problems"
         android:background="@drawable/apptheme_btn_default_holo_dark"
         android:textAllCaps="false"
@@ -46,7 +47,6 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:textSize="25dp"
-
         />
 
         <TextView

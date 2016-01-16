@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,10 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         aboutCareAndShare = (TextView) findViewById(R.id.tv_aboutCareAndShare);
-
-        Parse.initialize(this, "MvyH4EW3DSIkEsu8iLHaY6EN86M9oLpN1FbX40g9", "FshCrKVonUSYYFL9FYYqT0arVomLg1bhc2btbFeE");
+        initParse();
+       // Parse.initialize(this, "MvyH4EW3DSIkEsu8iLHaY6EN86M9oLpN1FbX40g9", "FshCrKVonUSYYFL9FYYqT0arVomLg1bhc2btbFeE");
     }
 
+    private void initParse() {
+        try {
+            Parse.initialize(getApplication(), "MvyH4EW3DSIkEsu8iLHaY6EN86M9oLpN1FbX40g9", "FshCrKVonUSYYFL9FYYqT0arVomLg1bhc2btbFeE");
+            ParseInstallation.getCurrentInstallation().saveInBackground();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -51,24 +60,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void MyButtonClick(View view) {
-        Button button = (Button) view;
-        Toast.makeText(this, button.getText(), Toast.LENGTH_SHORT).show();
-    }
-
     public void goToSubmitionActivity(View view) {
         Intent i = new Intent(getApplicationContext(),SubmitionActivity.class);
         startActivity(i);
     }
 
     public void bt_aboutCareAndShare(View view) {
-        if(aboutCareAndShare.getVisibility() == View.INVISIBLE)
-        {
+        if(aboutCareAndShare.getVisibility() == View.INVISIBLE){
             aboutCareAndShare.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             aboutCareAndShare.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void goToListActivity(View view) {
+        Intent i = new Intent(getApplicationContext(),ListActivity.class);
+        startActivity(i);
     }
 }

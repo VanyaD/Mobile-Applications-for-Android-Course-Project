@@ -86,7 +86,6 @@
         android:layout_below="@id/et_priority"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:drawableRight="@drawable/submit_final_idea"/>
+        android:layout_gravity="center_horizontal"/>
 
 </RelativeLayout>
