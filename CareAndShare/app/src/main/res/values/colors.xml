@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="myBlack">#001</color>
     <color name="mainAppColor">#F5DEB3</color>
+    <color name="mainAppBarColor">#8B7E66</color>
+    <color name="mainAppBarDarkColor">#3D2B1F</color>
 </resources>

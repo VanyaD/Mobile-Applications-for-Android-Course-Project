@@ -2,9 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.careandshare.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_add"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher_add"
+        android:title="@string/action_add"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_launcher_help"
+        android:title="@string/action_help"
+        app:showAsAction="ifRoom" />
 </menu>

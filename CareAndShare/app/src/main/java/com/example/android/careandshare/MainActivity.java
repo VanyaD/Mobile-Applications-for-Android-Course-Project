@@ -1,16 +1,23 @@
 package com.example.android.careandshare;
 
+import android.content.Context;
 import android.content.Intent;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +32,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+
         aboutCareAndShare = (TextView) findViewById(R.id.tv_aboutCareAndShare);
         initParse();
        // Parse.initialize(this, "MvyH4EW3DSIkEsu8iLHaY6EN86M9oLpN1FbX40g9", "FshCrKVonUSYYFL9FYYqT0arVomLg1bhc2btbFeE");
+
+
     }
 
     private void initParse() {
@@ -52,12 +65,36 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+//        LayoutInflater inflater = (LayoutInflater)
+//                this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//
+//        DisplayMetrics dm = new DisplayMetrics();
+//        AndroidPopupWindowActivity and = new AndroidPopupWindowActivity();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//
+//        int width = dm.widthPixels;
+//        int height = dm.heightPixels;
+
+//        getWindow().setLayout((int)(width*.8), (int)(height*.6));
+
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+
+        if (id == R.id.action_help) {
+            goToAndroidPopupWindowActivity(item.getActionView());
+            return true;
+        }
+
+        if(id == R.id.action_add){
+            goToSubmitionActivity(item.getActionView());
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToAndroidPopupWindowActivity(View actionView) {
+        Intent i = new Intent(getApplicationContext(),AndroidPopupWindowActivity.class);
+        startActivity(i);
     }
 
     public void goToSubmitionActivity(View view) {
