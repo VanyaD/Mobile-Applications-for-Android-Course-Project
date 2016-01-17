@@ -17,14 +17,8 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class SubmitionActivityFragment extends Fragment implements OnMapReadyCallback {
-    private static final long MIN_TIME_BW_UPDATES = 0;
-    private static final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 0;
     private View v;
     private MapView mMapView;
-    private GoogleMap mMap;
-    private  LocationManager locationManager;
-    private boolean canGetLocation;
-    private Location location;
 
     public SubmitionActivityFragment() {
     }
@@ -46,7 +40,6 @@ public class SubmitionActivityFragment extends Fragment implements OnMapReadyCal
         return v;
     }
 
-
     @Override
     public void onMapReady(GoogleMap map) {
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -60,61 +53,7 @@ public class SubmitionActivityFragment extends Fragment implements OnMapReadyCal
         }
 
         map.setMyLocationEnabled(true);
-        mMap = map;
     }
-
-    /*
-        private void setUpMap() {
-          //  mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker").snippet("Snippet"));
-            // Enable MyLocation Layer of Google Map
-        //     mMap.setMyLocationEnabled(true);
-
-            // Get LocationManager object from System Service LOCATION_SERVICE
-            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-            // Create a criteria object to retrieve provider
-            Criteria criteria = new Criteria();
-
-            // Get the name of the best provider
-            String provider = locationManager.getBestProvider(criteria,true);
-
-            if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(this.getContext(),
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-               requestPermissions(new String[]{
-                               Manifest.permission.ACCESS_FINE_LOCATION,
-                               Manifest.permission.ACCESS_COARSE_LOCATION},getTargetRequestCode()
-                       );
-
-            }
-            Location myLocation = locationManager.getLastKnownLocation(provider);
-            // Get latitude of the current location
-            double latitude = myLocation.getLatitude();
-
-            // Get longitude of the current location
-            double longitude = myLocation.getLongitude();
-
-            // Create a LatLng object for the current location
-            LatLng latLng = new LatLng(latitude, longitude);
-
-            // Show the current location in Google Map
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
-            // Zoom in the Google Map
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-          //  mMap.addMarker(new MarkerOptions().position(new LatLng(100, 1000)).title("You are here!").snippet("Consider yourself located"));
-            LatLng myCoordinates = new LatLng(latitude, longitude);
-            CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(myCoordinates, 12);
-            mMap.animateCamera(yourLocation);
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(myCoordinates)      // Sets the center of the map to LatLng (refer to previous snippet)
-                    .zoom(17)                   // Sets the zoom
-                    .bearing(90)                // Sets the orientation of the camera to east
-                    .tilt(30)                   // Sets the tilt of the camera to 30 degrees
-                    .build();                   // Creates a CameraPosition from the builder
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        }*/
 
     @Override
     public void onLowMemory() {

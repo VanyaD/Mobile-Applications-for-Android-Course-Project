@@ -44,13 +44,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-
-
         aboutCareAndShare = (TextView) findViewById(R.id.tv_aboutCareAndShare);
         initParse();
-       // Parse.initialize(this, "MvyH4EW3DSIkEsu8iLHaY6EN86M9oLpN1FbX40g9", "FshCrKVonUSYYFL9FYYqT0arVomLg1bhc2btbFeE");
-
-
     }
 
     private void initParse() {

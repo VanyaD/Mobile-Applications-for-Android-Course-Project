@@ -30,4 +30,17 @@
          &lt;br&gt; Enjoy it! <br/>
 
         </string>
+    <string name="submit_idea">Submit idea</string>
+    <string name="submit_problem">Submit a problem</string>
+    <string name="list_problem">List problems</string>
+    <string name="about_careandshare">About CareAndShare</string>
+    <string name="about_text">This is the easiest and most convenient way to share a problem or even just an idea for improvement and be sure that it will be transferred to the respective authorities. This application is for everyone who cannot just pass by issues faced while traveling to work. This application is for everyone who cares for the others, cares for his children, cares for the future. If you are a person of action, then this application is the one for you!</string>
+    <string name="text_location">Location</string>
+    <string name="text_details">Details</string>
+    <string name="text_enter_title">Enter the title</string>
+    <string name="text_enter_description">Enter the description</string>
+    <string name="text_chooseCategory">Choose category from bellow</string>
+    <string name="text_enter_priority">Enter the priority</string>
+    <string name="text_shoot">Shoot</string>
+    <string name="text_capture">Capture the Problem</string>
 </resources>

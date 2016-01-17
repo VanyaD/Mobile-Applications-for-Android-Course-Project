@@ -7,42 +7,33 @@
     android:id="@+id/camera_text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Capture the Problem"
-    android:textSize="25dp"
-    android:textColor="@color/mainAppColor"
-    android:layout_centerHorizontal="true"
+    android:text="@string/text_capture"
+    style="@style/mainTextView"
     />
 
     <Button
         android:id="@+id/button_camera"
         android:layout_height="wrap_content"
         android:layout_width="150dp"
-        android:text="Shoot"
+        android:layout_below="@+id/camera_text"
+        android:text="@string/text_shoot"
         android:background="@drawable/apptheme_btn_default_holo_dark"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:textSize="25dp"
-        android:layout_below="@+id/camera_text"
+        android:textSize="25sp"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-
         />
 
     <Button
         android:id="@+id/bt_goToDetailsPage"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/green_apptheme_btn_default_holo_dark"
         android:onClick="GoToDetailsPage"
-        android:text="Next"
-        android:layout_marginTop="10dp"
-        android:textSize="27sp"
         android:layout_below="@id/button_camera"
-        android:textAllCaps="false"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:drawableRight="@drawable/go_next"
         android:visibility="invisible"
+        style="@style/button_goToNextPage"
+        android:drawableRight="@drawable/go_next"
         />
 
     <ImageView

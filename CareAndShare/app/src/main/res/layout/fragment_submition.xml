@@ -14,61 +14,32 @@
         android:id="@+id/location_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location"
-        android:textSize="30sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#F5DEB3"
-        android:layout_centerHorizontal="true"/>
-<!--
-    <Button
-        android:id="@+id/button_location"
-        android:layout_height="wrap_content"
-        android:layout_width="180dp"
-        android:text="Where Am I?"
-        android:background="@drawable/apptheme_btn_default_holo_dark"
-        android:textAllCaps="false"
-        android:layout_gravity="center_vertical"
-        android:textSize="25dp"
-        android:layout_below="@+id/location_text"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="findMyLocation"
-       /> -->
+        android:text="@string/text_location"
+        style="@style/mainTextView"
+        />
+
     <TextView
         android:layout_below="@id/location_text"
         android:id="@+id/tv_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/mainAppColor"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        />
+        style="@style/textView_locationPage"/>
+
     <TextView
         android:id="@+id/tv_latitude"
         android:layout_below="@id/tv_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/mainAppColor"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
+        style="@style/textView_locationPage"/>
         />
-
     <Button
         android:id="@+id/bt_goToCameraPage"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:onClick="GoToCameraPage"
         android:layout_below="@id/tv_latitude"
-        android:textAllCaps="false"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/green_apptheme_btn_default_holo_dark"
-        android:text="Next"
-        android:layout_marginTop="10dp"
-        android:textSize="27sp"
         android:drawableRight="@drawable/go_next"
-        android:layout_gravity="center_horizontal"
+        style="@style/button_goToNextPage"
         />
 
     <com.google.android.gms.maps.MapView

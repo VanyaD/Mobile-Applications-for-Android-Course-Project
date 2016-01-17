@@ -11,53 +11,41 @@
     <Button
         android:layout_height="wrap_content"
         android:layout_width="300dp"
-        android:text="Submit a problem"
+        android:text="@string/submit_problem"
         android:onClick="goToSubmitionActivity"
         android:drawableLeft="@drawable/submit_problem"
-        android:background="@drawable/apptheme_btn_default_holo_dark"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="25dp"
+        style="@style/mainPageButtons"
         />
 
     <Button
         android:id="@+id/bt_listProblems"
         android:layout_height="wrap_content"
         android:layout_width="300dp"
-        android:text="List problems"
+        android:text="@string/list_problem"
         android:onClick="goToListActivity"
         android:drawableLeft="@drawable/list_problems"
-        android:background="@drawable/apptheme_btn_default_holo_dark"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="25dp"
+        style="@style/mainPageButtons"
         />
 
     <Button
         android:id="@+id/button_submitProblem"
         android:layout_height="wrap_content"
         android:layout_width="300dp"
-        android:text="About CareAndShare"
+        android:text="@string/about_careandshare"
         android:onClick="bt_aboutCareAndShare"
         android:drawableLeft="@drawable/about_app"
-        android:background="@drawable/apptheme_btn_default_holo_dark"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="25dp"
+        style="@style/mainPageButtons"
         />
 
-        <TextView
+    <TextView
         android:id="@+id/tv_aboutCareAndShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the easiest and most convenient way to share a problem or even just an idea for improvement and be sure that it will be transferred to the respective authorities. This application is for everyone who cannot just pass by issues faced while traveling to work. This application is for everyone who cares for the others, cares for his children, cares for the future. If you are a person of action, then this application is the one for you!"
+        android:text="@string/about_text"
         android:textColor="@color/mainAppColor"
         android:textAllCaps="false"
         android:textSize="20sp"
-            android:visibility="invisible"
+        android:visibility="invisible"
         />
 
 </LinearLayout>
