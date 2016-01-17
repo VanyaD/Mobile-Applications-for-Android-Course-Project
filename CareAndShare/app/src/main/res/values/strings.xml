@@ -9,4 +9,25 @@
         <item>Other</item>
     </string-array>
     <string name="title_activity_list">ListActivity</string>
+    <string name="action_help">Help</string>
+    <string name="action_about">About</string>
+    <string name="action_add">Add</string>
+    <string name="help_instructions">
+
+       &lt;br&gt; &lt;b&gt; How to submit a problem?<b/> <br/>
+        &lt;br&gt;
+
+        &lt;br&gt;To submit a problem, you just need to follow the steps listed below:<br/>
+
+           &lt;h1&gt;   1. Identify a problem <h1/>
+
+             &lt;h1&gt; 2. Determine your location <h1/>
+
+             &lt;h1&gt; 3. Capture the problem <h1/>
+
+             &lt;h1&gt; 4. Submit the problem <h1/>
+&lt;br&gt;
+         &lt;br&gt; Enjoy it! <br/>
+
+        </string>
 </resources>
