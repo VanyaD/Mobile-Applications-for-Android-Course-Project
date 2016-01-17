@@ -1,6 +1,7 @@
 package com.example.android.careandshare;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,23 +23,32 @@ import models.ImageAdapter;
 
 public class ListActivity extends AppCompatActivity {
     String[] titles;
+    Bitmap[] images;
+    int counter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("CareAndShare_Problem");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> problems, ParseException e) {
-                if (e == null) {
-
-                } else {
-                    // handle Parse Exception here
+        titles = new String[] {
+                "first", "second", "third","first", "second", "third","second", "third",
+        };
+        counter = -1;
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> problems, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject problem : problems) {
+                            counter++;
+                            titles[counter] = problem.getString("Title");
+                        }
+                    } else {
+                        // handle Parse Exception here
+                    }
                 }
-            }
-        });
+            });
 
+        int b = 5;
         GridView grid;
         int[] imageId = {
                 R.mipmap.sample_0,
@@ -47,16 +57,14 @@ public class ListActivity extends AppCompatActivity {
                 R.mipmap.sample_0,
                 R.mipmap.ic_launcher,
                 R.mipmap.sample_0,
+                R.mipmap.ic_launcher,
+                R.mipmap.sample_0,
         };
 
-        titles = new String[] {
-                        "first", "second", "third","first", "second", "third",
-                };
+            ImageAdapter adapter = new ImageAdapter(ListActivity.this, titles, imageId);
+            grid = (GridView) findViewById(R.id.grid);
+            grid.setAdapter(adapter);
 
-        ImageAdapter adapter = new ImageAdapter(ListActivity.this, titles, imageId);
-
-        grid = (GridView) findViewById(R.id.grid);
-        grid.setAdapter(adapter);
         /*
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
